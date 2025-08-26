@@ -59,14 +59,14 @@ function RemoveTask(task) {
 
 function RemoveAllTasks(){
     if(taskList.hasChildNodes()){
+        taskNumber = 1;
+        
         while(taskList.lastChild){
             taskList.lastChild.remove()
         }
 
         UpdateRemainingTasks()
     }
-
-    taskNumber = 1;
 }
 
 function UpdateRemainingTasks(){
