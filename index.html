@@ -12,36 +12,26 @@
     </head>
     <body>
         <main class="main">
+            
             <header class="main_header">
                 <h1 id="title" class="main_header__title">Your To Do</h1>
             </header>
 
             <section id="input_task" class="main__input_task">
-                <input type="text" placeholder="Add new task">
-                <button aria-label="Add task"><img src="assets/plus.png" alt="input"></button>
+                <input type="text" placeholder="Add new task" data-js-task-input>
+                <button aria-label="Add task"><img src="assets/plus.png" alt="input" data-js-task-button></button>
             </section>
 
-            <ul class="main_list">
-
-                <li id="task_(numberOfArray)" class="main_list__task">
-                    <label class="main_list_task__label">
-                        <input class="label__do" type="checkbox">
-                        <span class="label__text_task">This is an example of task #1</span>
-                    </label>
-
-                    <button id="numberOfArray" class="delete_task" aria-label="Delete task">
-                        <img src="assets/cancel.png" alt="delete">
-                    </button>
-                </li>
-            </ul>
+            <ul class="main_list" data-js-task-list></ul>
 
             <footer class="main_footer">
-                <p class="main_footer__remaining">Your remaining todos: 1</p>
+                <p class="main_footer__remaining" data-js-remaining-tasks>Your remaining todos: 0</p>
 
                 <div class="main_footer__delete">
                     <span>Remove all tasks</span>
-                    <button id="deleteALL" class="delete_all_task" aria-label="Delete all tasks">
-                    <img src="assets/trash-bin.png" alt="">
+
+                    <button id="deleteALL" class="delete_all_task" aria-label="Delete all tasks" data-js-delete-tasks-button>
+                        <img src="assets/trash-bin.png" alt="">
                     </button>
                 </div>
             </footer>

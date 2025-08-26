@@ -1,0 +1,158 @@
+html {
+    font-size: 62.5%;
+}
+
+body {
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.main {
+    background-color: #ffffff;
+    min-width: 35%;
+    max-width: 45rem;
+
+    height: 400px;
+    border-radius: 15px;
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: 40rem;
+    grid-template-rows: 1fr 1fr 5fr 1fr;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(88, 86, 86, 0.1);
+}
+
+.main_header__title {
+    color: #505050;
+    font-family: sans-serif;
+    font-size: 2rem;
+}
+
+.main__input_task {
+    display: flex;
+    max-height: 20px;
+}
+
+
+.main__input_task input {
+    width: 100%;
+    border: 2px solid #ddd;
+    padding: 0.75rem;
+    border-style: none;
+    border-bottom-style:ridge;
+}
+
+.main__input_task input:focus {
+  outline: none; 
+}
+
+.main__input_task button {
+    margin-left: 10px;
+    align-self: center;
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 8px;
+    background-color: #505050;
+}
+
+
+.main__input_task button img {
+    margin-top: 3px;
+    justify-self: flex-end;
+    max-width: 15px;
+    max-height: 15px;
+    filter: invert(1);
+}
+
+
+.main_footer__remaining {
+    justify-self: start;
+    color: #505050;
+    font-size: small;
+    font-family: sans-serif;
+    font-style: italic;
+    font-weight: bold;
+}
+
+
+.main_footer__delete{
+    justify-self: start;
+    color: #505050;
+    font-size: small;
+    font-family: sans-serif;
+    font-style: italic;
+    font-weight: bold;
+}
+
+
+.main_footer__delete button{
+    margin-left: 10px;
+    align-self: center;
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 8px;
+    background-color: #505050;
+}
+
+
+.main_footer__delete button img {
+    margin-top: 3px;
+    max-width: 15px;
+    max-height: 15px;
+    filter: invert(1);
+}
+
+
+.main_list {
+    list-style: none;
+    padding-left: 0;  
+    margin: 0;
+    overflow-y: auto;
+}
+
+
+.main_list__task {
+    position: relative;
+    font-size: smaller;
+    font-family: sans-serif;
+    font-weight: bold;
+    padding: 0.4rem;
+    border-style: solid;
+    border-radius: 8px;
+    color:gray;
+
+    margin-top: 0.5rem;
+}
+
+.label__text_task {
+    font-size: 1.3rem;
+}
+
+.label__do:checked + .label__text_task {
+    text-decoration: line-through;
+    color: #a9a9a9;
+}
+
+
+.main_list__task .delete_task {
+    position: absolute;
+    right: 1rem;
+    top: 0.1rem;
+    justify-self: flex-end;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+
+.main_list__task button img {
+    margin-top: 3px;
+    max-width: 1rem;
+    max-height: 1rem;
+}
