@@ -53,6 +53,7 @@ function AddTask() {
 
 function RemoveTask(task) {
     task.remove();
+    taskNumber--;
     UpdateRemainingTasks()
 }
 
@@ -64,6 +65,8 @@ function RemoveAllTasks(){
 
         UpdateRemainingTasks()
     }
+
+    taskNumber = 1;
 }
 
 function UpdateRemainingTasks(){
