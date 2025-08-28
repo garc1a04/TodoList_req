@@ -11,10 +11,9 @@ body {
 }
 
 .main {
+    position: relative;
     background-color: #ffffff;
-    min-width: 35%;
-    max-width: 45rem;
-
+    max-width: 50rem;
     height: 400px;
     border-radius: 15px;
     padding: 3rem;
@@ -23,6 +22,39 @@ body {
     grid-template-rows: 1fr 1fr 5fr 1fr;
     justify-content: center;
     box-shadow: 0 4px 12px rgba(88, 86, 86, 0.1);
+
+    transition: all 0.5s ease;
+}
+
+@media (max-width: 500px){
+    .main{
+         grid-template-columns: 35rem;
+    }
+}
+@media (max-width: 450px){
+    .main{
+         grid-template-columns: 30rem;
+    }
+}
+@media (max-width: 400px){
+    .main{
+         grid-template-columns: 28rem;
+    }
+}
+@media (max-width: 350px){
+    
+    .main{
+        grid-template-columns: 26rem;
+    }
+
+    .error {
+        right: 1%;
+    }
+}
+@media (min-width: 800px){
+    .main{
+         grid-template-columns: 50rem;
+    }
 }
 
 .main_header__title {
@@ -50,6 +82,7 @@ body {
 }
 
 .main__input_task button {
+    position: relative;
     margin-left: 10px;
     align-self: center;
     width: 30px;
@@ -57,17 +90,25 @@ body {
     border: none;
     border-radius: 8px;
     background-color: #505050;
+    transition: all 0.3s ease;
 }
 
+.main__input_task button:hover {
+    background-color: #797878;
+    transform: scale(1.15);
+}
 
 .main__input_task button img {
+    position: absolute;
+    top: 4px;
+    left: 7px;
+
     margin-top: 3px;
     justify-self: flex-end;
     max-width: 15px;
     max-height: 15px;
     filter: invert(1);
 }
-
 
 .main_footer__remaining {
     justify-self: start;
@@ -90,6 +131,8 @@ body {
 
 
 .main_footer__delete button{
+    position: relative;
+
     margin-left: 10px;
     align-self: center;
     width: 30px;
@@ -97,16 +140,24 @@ body {
     border: none;
     border-radius: 8px;
     background-color: #505050;
+    transition: all 0.3s ease;
 }
 
+.main_footer__delete button:hover {
+    background-color: #797878;
+    transform: scale(1.2);
+}
 
 .main_footer__delete button img {
+    position: absolute;
+    top: 4px;
+    left: 8px;
+
     margin-top: 3px;
     max-width: 15px;
     max-height: 15px;
     filter: invert(1);
 }
-
 
 .main_list {
     list-style: none;
@@ -114,7 +165,6 @@ body {
     margin: 0;
     overflow-y: auto;
 }
-
 
 .main_list__task {
     position: relative;
@@ -138,7 +188,6 @@ body {
     color: #a9a9a9;
 }
 
-
 .main_list__task .delete_task {
     position: absolute;
     right: 1rem;
@@ -155,4 +204,20 @@ body {
     margin-top: 3px;
     max-width: 1rem;
     max-height: 1rem;
+}
+
+.error {
+    position: absolute;
+    right: 5%;
+    top: 2.6rem;
+    max-width: 35rem;
+    font-family: sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: rgba(255, 0, 0, 0.699);
+}
+
+.hidden {
+    display: none;
 }
