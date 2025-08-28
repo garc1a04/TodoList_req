@@ -7,7 +7,7 @@
         <title>Todo List</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="style/main.css?v=1.0">
+        <link rel="stylesheet" href="style/main.css?v=1.1">
 
     </head>
     <body>
@@ -17,15 +17,15 @@
                 <h1 id="title" class="main_header__title">Your To Do</h1>
             </header>
 
+            <section id="input_task" class="main__input">
+                <div class="main__input_task">
+                    <input type="text" placeholder="Add new task" data-js-task-input>
+                    <button aria-label="Add task"><img src="assets/plus.png" alt="input" data-js-task-button></button>
+                </div>
 
-            <p id="err" class="error hidden"></p>
-
-
-            <section id="input_task" class="main__input_task">
-                <input type="text" placeholder="Add new task" data-js-task-input>
-
-                <button aria-label="Add task"><img src="assets/plus.png" alt="input" data-js-task-button></button>
+                <p id="err" class="error hidden"></p>
             </section>
+            
 
             <ul class="main_list" data-js-task-list></ul>
 
