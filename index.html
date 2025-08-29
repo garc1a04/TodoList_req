@@ -7,20 +7,26 @@
         <title>Todo List</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="style/main.css?v=1.1">
-
+        <link rel="stylesheet" href="style/main.css?v=1.1.1">
     </head>
+
     <body>
         <main class="main">
             
             <header class="main_header">
-                <h1 id="title" class="main_header__title">Your To Do</h1>
+                <h1 id="title" class="main_header__title">Tarefas</h1>
             </header>
 
             <section id="input_task" class="main__input">
                 <div class="main__input_task">
-                    <input type="text" placeholder="Add new task" data-js-task-input>
-                    <button aria-label="Add task"><img src="assets/plus.png" alt="input" data-js-task-button></button>
+                    <input type="text" placeholder="Adicione sua tarefa" maxlength="100" data-js-task-input>
+                    
+                    <p id="input_counter" class="caracter">100</p>
+
+                    <button aria-label="Add task" data-js-task-button>
+                        <img src="assets/plus.png" alt="input">
+                    </button>
+
                 </div>
 
                 <p id="err" class="error hidden"></p>
@@ -30,10 +36,10 @@
             <ul class="main_list" data-js-task-list></ul>
 
             <footer class="main_footer">
-                <p class="main_footer__remaining" data-js-remaining-tasks>Your remaining todos: 0</p>
+                <p class="main_footer__remaining" data-js-remaining-tasks>Tarefas restantes: 0</p>
 
                 <div class="main_footer__delete">
-                    <span>Remove all tasks</span>
+                    <span>Remover todas as tarefas</span>
 
                     <button id="deleteALL" class="delete_all_task" aria-label="Delete all tasks" data-js-delete-tasks-button>
                         <img src="assets/trash-bin.png" alt="">
@@ -42,6 +48,6 @@
             </footer>
         </main>
 
-        <script src="script/main.js?v=1.0" async defer></script>
+        <script src="script/main.js?v=1.1.1" async defer></script>
     </body>
 </html>

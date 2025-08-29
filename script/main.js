@@ -7,6 +7,7 @@ const remainingTasks = document.querySelector("[data-js-remaining-tasks]");
 taskButton.addEventListener("click",AddTask);
 taskButton.addEventListener("keydown", (event) => {if (event.key === 'Enter' || event.key === ' '){AddTask()}});
 taskInput.addEventListener("keydown", (event) => {if (event.key === 'Enter') {AddTask()}});
+taskInput.addEventListener("input", count_caracter);
 taskInput.addEventListener("input", clearErr);
 deleteTasksButton.addEventListener("click",RemoveAllTasks);
 
@@ -19,12 +20,28 @@ if(localStorage.getItem("tasks") != undefined){
     tasks = JSON.parse(localStorage.getItem("tasks"));
 }
 
+function count_caracter() {
+    const caracter = document.querySelector("#input_counter");
+    let maxChar = 100;
+    let valor = maxChar - taskInput.value.length
+    caracter.textContent = valor
+
+    if(valor == 0) {
+        caracter.classList.add("end");
+        return;
+    }
+
+    caracter.classList.remove("end");
+}
+
 function clearInput(){
     taskInput.value = ""
 }
 
 function AddTask() {
     const taskText = taskInput.value.trim();
+    clearInput();
+    count_caracter();
 
     if(taskText == ""){
         errorTask("Não pode adicionar tarefas vazias");
@@ -32,12 +49,12 @@ function AddTask() {
     }
 
     if(taskNumber == 11){
+        taskInput.disabled = true;
         errorTask("Não pode adicionar mais que 10 tarefas!");
         return;
     }
 
     clearErr();
-    clearInput();
 
     let novaTarefa = document.createElement("li");
     novaTarefa.id = `${taskNumber}`;
@@ -45,8 +62,14 @@ function AddTask() {
     novaTarefa.innerHTML =  `
                             <label class="main_list_task__label">
                                 <input class="label__do" type="checkbox" data-js-checkbox>
-                                <span class="label__text_task">${taskText[0].toUpperCase() + taskText.substring(1,taskText.length)}</span>
+                                <span class="label__text_task">
+                                 ${taskText[0].toUpperCase() + taskText.substring(1,taskText.length)}
+                                </span>
                             </label>
+    
+                            <button id="edit_${taskNumber}" class="edit_task" aria-label="edit task" data-js-edit-task-button>
+                                <img src="assets/edit-text.png" alt="edit">
+                            </button>
 
                             <button id="${taskNumber}" class="delete_task" aria-label="Delete task" data-js-delete-task-button>
                                 <img src="assets/cancel.png" alt="delete">
@@ -62,7 +85,7 @@ function AddTask() {
         RemoveTask(novaTarefa)
     );
 
-    remainingTasks.textContent = `Your remaining todos: ${taskList.childElementCount}`
+    remainingTasks.textContent = `Tarefas restantes: ${taskList.childElementCount}`
     
     tasks.push({
         texto: taskText,
@@ -116,8 +139,13 @@ function UpdateRemainingTasks(){
         tasks[i].checked = false;
     }
 
+    if(checkedTasks <= 10) {
+        taskInput.disabled = false;
+        clearErr();
+    }
+
     //addInLocalStorage(tasks);
-    remainingTasks.textContent = `Your remaining todos: ${taskList.childElementCount - checkedTasks}`
+    remainingTasks.textContent = `Tarefas restantes: ${taskList.childElementCount - checkedTasks}`
 }
 
 function errorTask(err) {
