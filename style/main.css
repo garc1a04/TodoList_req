@@ -3,6 +3,8 @@ html {
 }
 
 body {
+    font-family: 'Raleway', Arial, sans-serif;
+    animation: PáginaFadeIn 0.7s;
     background-color: #f0f2f5;
     display: flex;
     justify-content: center;
@@ -28,7 +30,7 @@ body {
 
 .main_header__title {
     color: #505050;
-    font-family: sans-serif;
+    font-family: "montserrat", sans-serif;
     font-size: 2rem;
 }
 
@@ -157,6 +159,7 @@ body {
     font-family: sans-serif;
     font-weight: bold;
 }
+
 
 .label__text_task {
     display: inline-block;
@@ -289,3 +292,44 @@ body {
          grid-template-columns: 50rem;
     }
 }
+
+/* --- Área do FirstBits --- */
+
+@keyframes FadeInAndScaleInTasks {
+  from { opacity: 0;scale: 0.8; }
+  to { opacity: 1;scale: 1; }
+}
+
+.fade-in {
+  animation: FadeInAndScaleInTasks 0.5s;
+}
+
+.main_list__task:last-child {
+  animation: FadeInAndScaleInTasks 0.5s;
+}
+@keyframes PáginaFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.main_list__task:hover {
+    border-color: #202020;
+    color: #212222;
+    transition: border-color 0.2s, color 0.2s;
+    z-index: 1;
+}
+@keyframes MSGErroAnim {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-8px); }
+  80% { transform: translateX(8px); }
+  100% { transform: translateX(0); }
+}
+
+.error.MSGErroAnim {
+  animation: MSGErroAnim 0.4s;
+}
+
+
+
+

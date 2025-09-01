@@ -177,6 +177,11 @@ function errorTask(err) {
     const error = document.querySelector("#err");
     error.classList.remove("hidden");
     error.textContent = err;
+    //Firstbits
+    error.classList.remove("MSGErroAnim");
+    void error.offsetWidth;
+    error.classList.add("MSGErroAnim");
+    //FirstBits
 }
 
 function clearErr() {
