@@ -214,7 +214,7 @@ body {
     background-color: transparent;
 }
 .edit_task:hover {
-    animation: NãoImplementado 0.4s;
+    animation: MSGErroAnim 0.4s;
     
 }
 .edit_task:hover::after {
