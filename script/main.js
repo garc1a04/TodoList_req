@@ -109,37 +109,6 @@ function AddTask() {
     }
 
     clearErr();
-
-    let novaTarefa = document.createElement("li");
-    novaTarefa.id = `${taskNumber}`;
-    novaTarefa.className = "main_list__task";
-    novaTarefa.innerHTML =  `
-                            <label class="main_list_task__label">
-                                <input class="label__do" type="checkbox" data-js-checkbox>
-                                <span class="label__text_task">
-                                 ${taskText[0].toUpperCase() + taskText.substring(1,taskText.length)}
-                                </span>
-                            </label>
-    
-                            <button id="edit_${taskNumber}" class="edit_task" aria-label="edit task" data-js-edit-task-button>
-                                <img src="assets/edit-text.png" alt="edit">
-                            </button>
-
-                            <button id="${taskNumber}" class="delete_task" aria-label="Delete task" data-js-delete-task-button>
-                                <img src="assets/cancel.png" alt="delete">
-                            </button>
-                            `
-
-    const checkbox = novaTarefa.querySelector("[data-js-checkbox]")
-    checkbox.addEventListener("click",UpdateRemainingTasks)
-    taskList.appendChild(novaTarefa);
-
-    const deleteTaskButton = novaTarefa.querySelector("[data-js-delete-task-button]");
-    deleteTaskButton.addEventListener("click", () =>
-        RemoveTask(novaTarefa)
-    );
-
-    remainingTasks.textContent = `Tarefas restantes: ${taskList.childElementCount}`
     
     tasks.push({
         texto: taskText,
@@ -147,9 +116,11 @@ function AddTask() {
     });
 
     addInLocalStorage(tasks);
-
     UpdateRemainingTasks()
     taskNumber++;
+    taskList.innerHTML = "";
+    loadInFront()
+
 }
 
 function RemoveTask(task) {
