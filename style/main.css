@@ -213,16 +213,7 @@ body {
     border-radius: 8px;
     background-color: transparent;
 }
-.edit_task:hover {
-    animation: MSGErroAnim 0.4s;
-    
-}
-.edit_task:hover::after {
-    content: " (não implementado)";
-    font-size: 1.2rem;
-    color: rgba(255, 0, 0, 0.699);
 
-}
 
 .edit_task img {
     width: 1.3rem;
