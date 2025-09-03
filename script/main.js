@@ -189,20 +189,12 @@ function ModalRemoveTask(task) {
         // usar dataset.index diretamente (mais confiável que procurar pelo id no DOM)
         const idx = Number(task.dataset.index);
         if (!Number.isNaN(idx) && idx > -1 && idx < tasks.length) {
-            // fecha o modal para que o usuário veja a animação
-            modal.remove();
-
-            // mostra a animação de fade out antes de remover a task
-            task.classList.add("fade-out");
-            task.addEventListener("animationend", () => {
-                tasks.splice(idx, 1);
-                addInLocalStorage(tasks);
-                loadInFront();
-            }, { once: true });
-        } else {
-            modal.remove();
-            loadInFront();
+            tasks.splice(idx, 1);
+            addInLocalStorage(tasks);
         }
+
+        modal.remove();
+        loadInFront();
     });
 }
 
