@@ -35,7 +35,7 @@ function attFromStorage(){
    }
 }
 
-function loadInFront() {
+function loadInFront(fadeInIndex = null) {
     taskList.innerHTML = "";
 
     // cria cópia com índice atual
@@ -53,6 +53,14 @@ function loadInFront() {
         novaTarefa.id = `task_${tarefa.originalIndex}`;
         novaTarefa.className = "main_list__task";
         novaTarefa.dataset.index = tarefa.originalIndex;
+
+        // Apenas adiciona o efeito de Fade in se ele for o ultimo.
+        if (tarefa.originalIndex === fadeInIndex) {
+            novaTarefa.classList.add("fade-in");
+            novaTarefa.addEventListener("animationend", () => {
+                novaTarefa.classList.remove("fade-in");
+            }, { once: true });
+        }
 
         const checkboxId = `checkbox_${tarefa.originalIndex}`;
 
@@ -148,7 +156,8 @@ function AddTask() {
     UpdateRemainingTasks()
     taskNumber++;
     taskList.innerHTML = "";
-    loadInFront()
+    // chama LoadInFront com a posição do ultimo adicionado
+    loadInFront(tasks.length - 1);
 }
 
 function ModalRemoveTask(task) {
@@ -189,12 +198,23 @@ function ModalRemoveTask(task) {
         // usar dataset.index diretamente (mais confiável que procurar pelo id no DOM)
         const idx = Number(task.dataset.index);
         if (!Number.isNaN(idx) && idx > -1 && idx < tasks.length) {
-            tasks.splice(idx, 1);
-            addInLocalStorage(tasks);
-        }
+            // fecha o modal para que o usuário veja a animação
+            modal.remove();
 
-        modal.remove();
-        loadInFront();
+            // mostra a animação de fade out antes de remover a task
+            task.classList.add("fade-out");
+            task.addEventListener("animationend", () => {
+                tasks.splice(idx, 1);
+                addInLocalStorage(tasks);
+                taskNumber = tasks.length + 1; // atualiza TaskNumber com o valor do array
+                loadInFront();
+                UpdateRemainingTasks();
+            }, { once: true });
+        } else {
+            modal.remove();
+            loadInFront();
+            UpdateRemainingTasks();
+        }
     });
 }
 
@@ -340,32 +360,19 @@ function RemoveAllTasks() {
     UpdateRemainingTasks()
 }
 
-function UpdateRemainingTasks(){
-    const checkboxes = taskList.getElementsByClassName("label__do");
+function UpdateRemainingTasks() {
     let checkedTasks = 0;
-
-    for(let i = 0; i < checkboxes.length; i++){
-        const cb = checkboxes[i];
-        const li = cb.closest("li");
-        if (!li) continue;
-        const idx = Number(li.dataset.index);
-        if (Number.isNaN(idx) || !tasks[idx]) continue;
-
-        if(cb.checked){
-            tasks[idx].checked = true;
-            checkedTasks++;
-        } else {
-            tasks[idx].checked = false;
-        }
+    for (let i = 0; i < tasks.length; i++) {
+        if (tasks[i].checked) checkedTasks++;
     }
 
-    if(checkedTasks <= 10) {
+    if (tasks.length < 10) {
         taskInput.disabled = false;
         clearErr();
     }
 
     addInLocalStorage(tasks);
-    remainingTasks.textContent = `Tarefas restantes: ${taskList.childElementCount - checkedTasks}`;
+    remainingTasks.textContent = `Tarefas restantes: ${tasks.length - checkedTasks}`;
 }
 
 function errorTask(err) {
