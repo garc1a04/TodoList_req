@@ -135,13 +135,13 @@ function AddTask() {
     count_caracter("");
 
     if(taskText == ""){
-        errorTask("Não pode adicionar tarefas vazias");
+        errorTask("","Não pode adicionar tarefas vazias");
         return;
     }
 
     if(taskNumber == 11){
         taskInput.disabled = true;
-        errorTask("Não pode adicionar mais que 10 tarefas!");
+        errorTask("","Não pode adicionar mais que 10 tarefas!");
         return;
     }
 
@@ -156,7 +156,6 @@ function AddTask() {
     UpdateRemainingTasks()
     taskNumber++;
     taskList.innerHTML = "";
-    // chama LoadInFront com a posição do ultimo adicionado
     loadInFront(tasks.length - 1);
 }
 
@@ -247,11 +246,11 @@ function ModalEditTask(task) {
                 <input type="text" value="${currentText}" maxlength="100" data-js-task-input-edit>
                 <p id="input_counter__edit" class="caracter__modal">100</p>
             </div>
-
+            
+            <p id="err2" class="error2 MSGErroAnim hidden"></p>
+            
             <button class="btn btn-cancelar">Cancelar</button>
             <button class="btn btn-editar" style="background-color:greenyellow;">Editar</button>
-            
-            <p id="err" class="error hidden"></p>
         </section>
     </div>
     `;
@@ -286,7 +285,7 @@ function ModalEditTask(task) {
         count_caracterGener(inputEdit);
 
         if (taskText === "") {
-            errorTask("Não pode adicionar tarefas vazias");
+            errorTask("2","Não pode adicionar tarefas vazias");
             return;
         }
 
@@ -345,7 +344,7 @@ function ModalRemoveAllTask() {
 
 function RemoveAllTasks() {
     if(!taskList.hasChildNodes()) {
-        errorTask("Não há tarefas");
+        errorTask("","Não há tarefas");
         return;
     }
 
@@ -375,8 +374,8 @@ function UpdateRemainingTasks() {
     remainingTasks.textContent = `Tarefas restantes: ${tasks.length - checkedTasks}`;
 }
 
-function errorTask(err) {
-    const error = document.querySelector("#err");
+function errorTask(id,err) {
+    const error = document.querySelector("#err"+id);
     error.classList.remove("hidden");
     error.textContent = err;
     error.classList.remove("MSGErroAnim");
@@ -384,14 +383,6 @@ function errorTask(err) {
     error.classList.add("MSGErroAnim");
 }
 
-function errorTask2(err) {
-    const error = document.querySelector("#err2");
-    error.classList.remove("hidden");
-    error.textContent = err;
-    error.classList.remove("MSGErroAnim");
-    void error.offsetWidth;
-    error.classList.add("MSGErroAnim");
-}
 
 function clearErr() {
     const error = document.querySelector("#err");

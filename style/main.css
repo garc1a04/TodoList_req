@@ -234,8 +234,17 @@ body {
     color: rgba(255, 0, 0, 0.699);
     margin-bottom: 0;
     margin-top: 0.5rem;
-
-    z-index: 1000;
+}
+.error2 {
+    position: absolute;
+    max-width: 35rem;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: rgba(255, 0, 0, 0.699);
+    margin-bottom: 0;
+    margin-top: 0.5rem;
 }
 
 .caracter {
@@ -344,6 +353,9 @@ body {
 .error.MSGErroAnim {
   animation: MSGErroAnim 0.4s;
 }
+.error2.MSGErroAnim {
+  animation: MSGErroAnim 0.4s;
+}
 .hidden {
     display: none;
 }
@@ -376,7 +388,7 @@ body {
     padding: 20px;
     border-radius: 12px;
     width: 400px;
-    height: 130px;
+    height: 170px;
     max-width: 400px;
     text-align: center;
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
@@ -395,6 +407,7 @@ body {
     border-radius: 8px;
     cursor: pointer;
     font-size: 14px;
+    margin-top: 3rem;
 }
 
 .btn-cancelar {
