@@ -405,3 +405,12 @@ body {
     background: #e63946;
     color: white;
 }
+
+@keyframes FadeOutAndScaleOutTasks {
+  from { opacity: 1; scale: 1; }
+  to { opacity: 0; scale: 0.8; }
+}
+
+.fade-out {
+  animation: FadeOutAndScaleOutTasks 0.4s;
+}
