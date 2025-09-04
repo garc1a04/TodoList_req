@@ -1,6 +1,6 @@
 # TodoList_req
 
-O **TodoList_req** é uma aplicação web desenvolvida para fins de aprendizado na disciplina de **Requisitos de Software**. O projeto permite praticar conceitos de **Requisitos Funcionais, Requisitos Não-Funcionais, Requisitos de Domínio e Requisitos de Negócio**.  
+O **TodoList_req** é uma aplicação web desenvolvida para fins de aprendizado na disciplina de **Requisitos e mod de sistemas**. O projeto permite praticar conceitos de **Requisitos Funcionais, Requisitos Não-Funcionais, Requisitos de Domínio e Requisitos de Negócio**.  
 
 Além disso, a aplicação possibilita aplicar conhecimentos práticos de **manipulação de DOM, armazenamento local e interatividade em JavaScript**, sendo ideal para iniciantes no desenvolvimento front-end.
 
