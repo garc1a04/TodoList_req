@@ -38,10 +38,8 @@ function attFromStorage(){
 function loadInFront(fadeInIndex = null) {
     taskList.innerHTML = "";
 
-    // cria cópia com índice atual
     const tasksWithIndex = tasks.map((tarefa, index) => ({ ...tarefa, originalIndex: index }));
 
-    // não-checados primeiro
     const tasksSorted = tasksWithIndex.slice().sort((a, b) => {
         if (a.checked === b.checked) return 0;
         return a.checked ? 1 : -1;
@@ -49,12 +47,10 @@ function loadInFront(fadeInIndex = null) {
 
     tasksSorted.forEach((tarefa) => {
         const novaTarefa = document.createElement("li");
-        // armazena o índice atual do array para mapear a action de volta ao tasks
         novaTarefa.id = `task_${tarefa.originalIndex}`;
         novaTarefa.className = "main_list__task";
         novaTarefa.dataset.index = tarefa.originalIndex;
 
-        // Apenas adiciona o efeito de Fade in se ele for o ultimo.
         if (tarefa.originalIndex === fadeInIndex) {
             novaTarefa.classList.add("fade-in");
             novaTarefa.addEventListener("animationend", () => {
@@ -67,7 +63,7 @@ function loadInFront(fadeInIndex = null) {
         novaTarefa.innerHTML = `
             <label class="main_list_task__label" for="${checkboxId}">
                 <input id="${checkboxId}" class="label__do" type="checkbox" data-js-checkbox ${tarefa.checked ? "checked" : ""}>
-                <span class="label__text_task">${tarefa.texto}</span>
+                <span class="label__text_task">${tarefa.texto.charAt(0).toUpperCase() + tarefa.texto.slice(1)}</span>
             </label>
             <button id="edit_${tarefa.originalIndex}" class="edit_task" aria-label="edit task" data-js-edit-task-button>
                 <img src="assets/edit-text.png" alt="edit">
@@ -81,11 +77,11 @@ function loadInFront(fadeInIndex = null) {
 
         checkbox.addEventListener("change", (e) => {
             const checkedNow = e.target.checked;
-            const idx = Number(novaTarefa.dataset.index); // índice seguro
+            const idx = Number(novaTarefa.dataset.index);
             if (!Number.isNaN(idx) && tasks[idx]) {
                 tasks[idx].checked = checkedNow;
                 addInLocalStorage(tasks);
-                // se quiser que a tarefa mude de posição quando marcada, re-renderizamos
+                
                 loadInFront();
                 UpdateRemainingTasks();
             }
@@ -194,18 +190,15 @@ function ModalRemoveTask(task) {
     });
 
     btnApagar.addEventListener("click", () => {
-        // usar dataset.index diretamente (mais confiável que procurar pelo id no DOM)
         const idx = Number(task.dataset.index);
         if (!Number.isNaN(idx) && idx > -1 && idx < tasks.length) {
-            // fecha o modal para que o usuário veja a animação
             modal.remove();
 
-            // mostra a animação de fade out antes de remover a task
             task.classList.add("fade-out");
             task.addEventListener("animationend", () => {
                 tasks.splice(idx, 1);
                 addInLocalStorage(tasks);
-                taskNumber = tasks.length + 1; // atualiza TaskNumber com o valor do array
+                taskNumber = tasks.length + 1; 
                 loadInFront();
                 UpdateRemainingTasks();
             }, { once: true });
